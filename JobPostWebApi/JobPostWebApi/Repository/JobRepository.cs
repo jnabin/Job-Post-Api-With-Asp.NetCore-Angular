@@ -20,5 +20,18 @@ namespace JobPostWebApi.Repository
             var jobs =await _jobContext.Jobs.ToListAsync();
             return jobs;
         }
+
+        public async Task<Job> GetJobByIdAsync(int id)
+        {
+            var job =await _jobContext.Jobs.FindAsync(id);
+            return job;
+        }
+
+        public async Task<int> CreateJobAsync(Job job)
+        {
+            _jobContext.Jobs.Add(job);
+            await _jobContext.SaveChangesAsync();
+            return job.JobId;
+        }
     }
 }
