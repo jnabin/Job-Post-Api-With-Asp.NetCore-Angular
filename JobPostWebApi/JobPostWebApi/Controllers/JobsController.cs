@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using JobPostWebApi.Data;
 using JobPostWebApi.Model;
 using JobPostWebApi.Repository;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobPostWebApi.Controllers
@@ -38,6 +40,27 @@ namespace JobPostWebApi.Controllers
         {
             var jobId =await _jobRepository.CreateJobAsync(job);
             return CreatedAtAction(nameof(GetJobById), new { id = jobId, controller = "Jobs" }, jobId);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateJob([FromBody] UpdateJobViewModel job, [FromRoute] int id)
+        {
+            await _jobRepository.UpdateJobAsync(id, job);
+            return Ok();
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> UpdateJobPatch([FromBody] JsonPatchDocument job, [FromRoute] int id)
+        {
+            await _jobRepository.UpdateJobPatchAsync(id, job);
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteJob([FromRoute] int id)
+        {
+            await _jobRepository.DeleteJobAsync(id);
+            return Ok();
         }
     }
 }

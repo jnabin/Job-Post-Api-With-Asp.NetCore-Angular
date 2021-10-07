@@ -32,7 +32,7 @@ namespace JobPostWebApi
             services.AddDbContext<JobContext>( options => 
                 options.UseSqlServer(Configuration.GetConnectionString("JobPostDb"))
             );
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
             services.AddTransient<IJobRepository, JobRepository>();
         }
 
