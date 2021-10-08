@@ -34,6 +34,12 @@ namespace JobPostWebApi
             );
             services.AddControllers().AddNewtonsoftJson();
             services.AddTransient<IJobRepository, JobRepository>();
+            services.AddCors(option=> {
+                option.AddDefaultPolicy(builder =>
+                {
+                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,7 +54,7 @@ namespace JobPostWebApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
