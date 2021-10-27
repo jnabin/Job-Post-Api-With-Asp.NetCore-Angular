@@ -1,25 +1,20 @@
-/JobPostWebApi/.vs/*
-/JobPostWebApi/JobPostWebApi/bin/*
-/JobPostWebApi/JobPostWebApi/obj/*
-
-
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-/JobPostAngularApp/dist
-/JobPostAngularApp/tmp
-/JobPostAngularApp/out-tsc
+/dist
+/tmp
+/out-tsc
 # Only exists if Bazel was run
-/JobPostAngularApp/bazel-out
+/bazel-out
 
 # dependencies
-/JobPostAngularApp/node_modules
+/node_modules
 
 # profiling files
 chrome-profiler-events*.json
 
 # IDEs and editors
-/JobPostAngularApp/.idea
+/.idea
 .project
 .classpath
 .c9/
@@ -36,16 +31,15 @@ chrome-profiler-events*.json
 .history/*
 
 # misc
-/JobPostAngularApp/.sass-cache
-/JobPostAngularApp/connect.lock
-/JobPostAngularApp/coverage
-/JobPostAngularApp/libpeerconnection.log
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
 npm-debug.log
 yarn-error.log
 testem.log
-/JobPostAngularApp/typings
+/typings
 
 # System Files
 .DS_Store
 Thumbs.db
-
