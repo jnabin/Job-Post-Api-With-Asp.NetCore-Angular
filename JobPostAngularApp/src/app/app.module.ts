@@ -1,6 +1,7 @@
+import { ErrorHandler } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -11,6 +12,8 @@ import { EditjobComponent } from './editjob/editjob.component';
 import { DeletejobComponent } from './deletejob/deletejob.component';
 import { DetailsjobComponent } from './detailsjob/detailsjob.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { AppErrorHandler } from './common/app-error-handler';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,9 +29,13 @@ import { NotfoundComponent } from './notfound/notfound.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {provide:ErrorHandler, useClass:AppErrorHandler}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

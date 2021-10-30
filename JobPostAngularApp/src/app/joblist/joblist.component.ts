@@ -1,3 +1,4 @@
+import { PostService } from './../Post.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./joblist.component.css']
 })
 export class JoblistComponent implements OnInit {
-
-  constructor() { }
+  jobList:any;
+  constructor(private service:PostService) { }
 
   ngOnInit(): void {
+    this.service.getJobs().subscribe(jobs => this.jobList = jobs)
   }
 
 }
