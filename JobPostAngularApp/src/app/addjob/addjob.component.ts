@@ -40,8 +40,9 @@ export class AddjobComponent implements OnInit {
   }
 
   submitForm(formValue:any){
-    this.service.createJob(formValue).subscribe(job => job);
-    this.router.navigate(['/home']);
+    this.service.createJob(formValue).subscribe(job => {
+      this.router.navigate(['/detailsJob', job])
+    });
   }
 
 }

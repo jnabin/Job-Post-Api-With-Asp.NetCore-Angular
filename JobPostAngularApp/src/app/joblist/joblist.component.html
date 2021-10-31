@@ -8,6 +8,7 @@
             <th scope="col">Salary</th>
             <th scope="col">Location</th>
             <th scope="col">Working Hour</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -18,6 +19,11 @@
             <td>{{job.salary}}</td>
             <td>{{job.location}}</td>
             <td>{{job.workingHour}}</td>
+            <td>
+              <a [routerLink]="['/detailsJob', job.jobId]">view</a> | 
+              <a [routerLink]="['/deleteJob', job.jobId]">delete</a> | 
+              <a [routerLink]="['/editJob', job.jobId]">edit</a>
+            </td>
         </tbody>
       </table>
 </div>

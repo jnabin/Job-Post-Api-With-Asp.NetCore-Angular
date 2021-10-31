@@ -28,20 +28,41 @@ export class PostService {
   }
 
   deleteJob(id:number){
-    this.http.delete(this.url + '/' + id).pipe(
+    return this.http.delete(this.url + '/' + id).pipe(
       map(response => response),
       catchError(this.handleError)
     );
   }
+ 
+  jobById(id:number){
+    return this.http.get(this.url+'/'+id).pipe(
+      map((response:any) => response),
+      catchError(this.handleError)
+    );
+  }
+
+  editJob(resource:any, id:number){
+    return this.http.put(this.url+'/'+id,resource).pipe(
+      map(response => response),
+      catchError(this.handleError)
+    );
+  }
+  /*editJobPatch(resource:any, id:number){
+    return this.http.patch(this.url+'/'+id,resource).pipe(
+      map(response => response),
+      catchError(this.handleError)
+    );
+  }*/
 
   handleError(error:Response){
+    alert(error.status);
     if(error.status === 400){
-      return throwError(new BadInputError(error.json()))
+      return throwError(new BadInputError(error.json))
     }
     else if(error.status === 404){
-      return throwError(new NotFoundError(error.json()));
+      return throwError(new NotFoundError(error.json));
     }else{
-      return throwError(new AppError(error.json()));
+      return throwError(new AppError(error.json));
     }
   }
 }
