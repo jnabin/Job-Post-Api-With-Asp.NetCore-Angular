@@ -2,6 +2,7 @@
 using JobPostWebApi.Data;
 using JobPostWebApi.Model;
 using JobPostWebApi.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,7 @@ namespace JobPostWebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class JobsController : ControllerBase
     {
         private readonly IJobRepository _jobRepository;
