@@ -14,6 +14,8 @@ import { DetailsjobComponent } from './detailsjob/detailsjob.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { AppErrorHandler } from './common/app-error-handler';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     EditjobComponent,
     DeletejobComponent,
     DetailsjobComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    LoginComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,

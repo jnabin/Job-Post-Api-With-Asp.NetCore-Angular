@@ -10,7 +10,7 @@ namespace JobPostWebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    
     public class JobsController : ControllerBase
     {
         private readonly IJobRepository _jobRepository;
@@ -34,6 +34,7 @@ namespace JobPostWebApi.Controllers
         }
 
         [HttpPost("")]
+        [Authorize]
         public async Task<IActionResult> CreateJob([FromBody]Job job)
         {
             var jobId =await _jobRepository.CreateJobAsync(job);
@@ -41,6 +42,7 @@ namespace JobPostWebApi.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> UpdateJob([FromBody] UpdateJobViewModel job, [FromRoute] int id)
         {
             await _jobRepository.UpdateJobAsync(id, job);
@@ -48,6 +50,7 @@ namespace JobPostWebApi.Controllers
         }
 
         [HttpPatch("{id}")]
+        [Authorize]
         public async Task<IActionResult> UpdateJobPatch([FromBody] JsonPatchDocument job, [FromRoute] int id)
         {
             await _jobRepository.UpdateJobPatchAsync(id, job);
@@ -55,6 +58,7 @@ namespace JobPostWebApi.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteJob([FromRoute] int id)
         {
             await _jobRepository.DeleteJobAsync(id);

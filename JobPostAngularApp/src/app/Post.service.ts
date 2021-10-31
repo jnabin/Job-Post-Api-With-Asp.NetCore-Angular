@@ -1,34 +1,37 @@
-import { AppError } from './common/app-error';
-import { NotFoundError } from './common/not-found-error';
-import { BadInputError } from './common/bad-input';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 import { retry, catchError, map } from 'rxjs/operators';
+import { AppError } from './common/app-error';
+import { BadInputError } from './common/bad-input';
+import { NotFoundError } from './common/not-found-error';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
   private url = "https://localhost:44365/api/jobs";
+  tokenheaders:HttpHeaders;
+  constructor(private http:HttpClient) { 
+    this.tokenheaders = new HttpHeaders({'Authorization':'Bearer '+localStorage.getItem('token')});
+   }
 
-  constructor(private http:HttpClient) { }
-
-  getJobs(){
+  getJobs(){  
     return this.http.get(this.url).pipe(
       map(response => response),
       catchError(this.handleError)
     );
   }
+
   createJob(resource:any){
-    return this.http.post(this.url, resource).pipe(
+    return this.http.post(this.url, resource, {headers:this.tokenheaders}).pipe(
       map(response => response),
       catchError(this.handleError)
     );
   }
 
   deleteJob(id:number){
-    return this.http.delete(this.url + '/' + id).pipe(
+    return this.http.delete(this.url + '/' + id, {headers:this.tokenheaders}).pipe(
       map(response => response),
       catchError(this.handleError)
     );
@@ -42,7 +45,7 @@ export class PostService {
   }
 
   editJob(resource:any, id:number){
-    return this.http.put(this.url+'/'+id,resource).pipe(
+    return this.http.put(this.url+'/'+id,resource, {headers:this.tokenheaders}).pipe(
       map(response => response),
       catchError(this.handleError)
     );

@@ -50,7 +50,7 @@ namespace JobPostWebApi.Repository
             {
                 var authClaim = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, model.Email),
+                    new Claim(ClaimTypes.Email, model.Email),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                 };
                 var authSignKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_config["JWT:Secret"]));

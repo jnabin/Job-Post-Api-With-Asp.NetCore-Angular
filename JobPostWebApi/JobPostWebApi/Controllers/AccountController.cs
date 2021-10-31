@@ -46,7 +46,7 @@ namespace JobPostWebApi.Controllers
             }
             else
             {
-                return Ok(result);
+                return Ok(new { result });
             }
         }
         
